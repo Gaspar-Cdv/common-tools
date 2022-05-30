@@ -29,7 +29,7 @@ export function slope (x1: number, y1: number, x2: number, y2: number): number {
     return Infinity
   }
   const result = (y2 - y1) / (x2 - x1)
-  return result === -0 ? 0 : result
+  return result || 0
 }
 
 
@@ -42,7 +42,7 @@ export function yIntercept (x1: number, y1: number, x2: number, y2: number): num
     return Infinity
   }
   const result = y1 - lineSlope * x1
-  return result === -0 ? 0 : result
+  return result || 0
 }
 
 
