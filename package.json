@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "dev": "tsc-watch --noClear -p ./tsconfig.json --onSuccess \"node ./index.js\""
   },
   "repository": {
@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/Gaspar-Cdv/common-tools#readme",
   "devDependencies": {
+    "@types/jest": "^27.5.1",
+    "jest": "^28.1.0",
     "tsc-watch": "^5.0.3",
     "typescript": "^4.7.2"
   }
