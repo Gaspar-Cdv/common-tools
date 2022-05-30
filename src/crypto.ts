@@ -8,22 +8,23 @@ import { removeDiacritics } from './string'
 export function vigenere (message: string, key: string, decode = false): string {
   message = removeDiacritics(message)
   let result = ''
-  let keyIndex = 0
-  let keyLength = key.length
-  for (let i = 0; i < message.length; i++) {
+  let gap = 0
+  let lower = 'abcdefghijklmnopqrstuvwxyz'
+  let upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  for (let i = 0, l = message.length; i < l; i++) {
     let char = message[i]
-    if (char.match(/[a-zA-Z]/)) {
-      let charCode = char.charCodeAt(0)
-      let keyChar = key[keyIndex]
-      let keyCode = keyChar.charCodeAt(0)
-      let shift = decode ? -keyCode : keyCode
-      let newCode = charCode + shift
-      if (newCode < 97) newCode += 26
-      if (newCode > 122) newCode -= 26
-      result += String.fromCharCode(newCode)
-      keyIndex = (keyIndex + 1) % keyLength
-    } else {
+    if (/[a-zA-Z]/.test(char)) {
+      let charPosition = (char.toLowerCase()).codePointAt(0)! - 97
+      let keyPosition = (key[(i - gap) % key.length].toLowerCase()).codePointAt(0)! - 97
+      let alphabet = char === char.toLowerCase() ? lower : upper
+      if (!decode) {
+        result += alphabet[(charPosition + keyPosition) % 26]
+      } else {
+        result += alphabet[(charPosition - keyPosition + 26) % 26]
+      }
+    } else { // non alphabetic character : adding a gap in the key index
       result += char
+      gap++
     }
   }
   return result
