@@ -6,6 +6,6 @@
 export function checkPositiveInteger (number: number, name: string, strict = true): void {
   const isNegative = strict ? number <= 0 : number < 0
   if (isNegative || !Number.isInteger(number)) {
-    throw TypeError(`The ${name} argument must be a positive integer.`)
+    throw TypeError(`The ${name} argument must be a ${strict ? 'strictly ' : ''}positive integer.`)
   }
 }
