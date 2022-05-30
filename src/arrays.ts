@@ -1,4 +1,4 @@
-import { checkPositiveInteger } from './checkers'
+import { checkPositiveInteger } from './checkers.js'
 
 /**
  * Universal sort of an array (destructive).
@@ -6,7 +6,11 @@ import { checkPositiveInteger } from './checkers'
 export function sort (array: any[], reverse = false): any[] {
   return array.sort((a, b) => {
     if (reverse) [a, b] = [b, a]
-    return typeof a == "number" ? a - b : a.localeCompare(b)
+    const aIsNumber = typeof a === "number"
+    const bIsNumber = typeof b === "number"
+    return aIsNumber && bIsNumber ? a - b :
+      !aIsNumber && !bIsNumber ? a.localeCompare(b) :
+      !aIsNumber && bIsNumber ? 1 : -1
   })
 }
 
@@ -14,7 +18,7 @@ export function sort (array: any[], reverse = false): any[] {
 /**
  * Search deeply a value in an array.
  */
-export function search (value: any, array: any[]): boolean {
+export function inArray (value: any, array: any[]): boolean {
   let regex = new RegExp("[[,]" + JSON.stringify(value) + "[,\\]]")
   return regex.test(JSON.stringify(array))
 }
@@ -47,7 +51,6 @@ export function count<T> (value: T | string, element: T[] | string) {
 export function countItems (element: any[] | string): { [key: string]: number } {
   let counts: { [key: string]: number } = {}
   for (let i = 0, l = element.length; i < l; i++) {
-    let item = element[i]
     counts[element[i]] = counts[element[i]] + 1 || 1
   }
   return counts
@@ -58,11 +61,12 @@ export function countItems (element: any[] | string): { [key: string]: number } 
  * Zip arrays together.
  */
 export function zip (...arrays: any[][]) {
-  let longest = Math.max(...arrays.map(x => x.length))
+  const zippedArray = []
+  const longest = Math.max(...arrays.map(x => x.length))
   for (let i = 0; i < longest; i++) {
-    arrays[0][i] = arrays.map(array => array[i])
+    zippedArray[i] = arrays.map(array => array[i])
   }
-  return arrays[0]
+  return zippedArray
 }
 
 
@@ -70,13 +74,15 @@ export function zip (...arrays: any[][]) {
  * Deeply clones an array, an object, a map or a set.
  * @returns the cloned element.
  */
-export function clone<T extends any[] | object | Map<any, any> | Set<any>> (element: T): T {
+export function clone<T extends any> (element: T): T {
   if (element instanceof Map) {
     return new Map(element) as T
   } else if (element instanceof Set) {
     return new Set(element) as T
+  } else if (typeof element === "symbol") {
+    return Symbol(element.description) as T
   } else {
-    return JSON.parse(JSON.stringify(element)) as T
+    return (element ? JSON.parse(JSON.stringify(element)) : element) as T
   }
 }
 
@@ -87,13 +93,14 @@ export function clone<T extends any[] | object | Map<any, any> | Set<any>> (elem
  */
 export function rotate<T extends string | any[]> (element: T, n = 1): T {
   return (typeof element === 'string' ?
-    internalRotate(element.split(''), n).join('') :
-    internalRotate(element, n)) as T
+    rotateInternal(element.split(''), n).join('') :
+    rotateInternal(element, n)) as T
 }
 
 
-function internalRotate (element: any[], n = 1): any[] {
-  return n > 0 ? element.splice(element.length - n).concat(element) : element.concat(element.splice(0, -n % element.length))
+export function rotateInternal (array: any[], n = 1) {
+  n = -n % array.length
+  return array.slice(n, array.length).concat(array.slice(0, n))
 }
 
 
@@ -115,7 +122,7 @@ export function groupBy<T extends any[] | string> (element: T): T[] {
     }, [])
   }
 
-  return element.match(/(.)\1*/g) as T[]
+  return (element.match(/(.)\1*/g) || []) as T[]
 }
 
 /**
