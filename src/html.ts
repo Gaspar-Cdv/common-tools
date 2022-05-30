@@ -19,9 +19,9 @@ export function getPages (currentPage: number, nbPages: number, distance: number
 
   return [
     1,
-    ...insertIf(currentPage > distance + 1, '...'),
+    ...insertIf(currentPage > distance + 2, '...'),
     ...[...Array(2 * distance + 1)].map((x, i) => i + currentPage - distance).filter(x => x > 1 && x < nbPages),
-    ...insertIf(currentPage < nbPages - distance, '...'),
+    ...insertIf(currentPage < nbPages - distance - 1, '...'),
     ...insertIf(nbPages > 1, nbPages)
   ]
 }
