@@ -1,4 +1,4 @@
-import { checkPositiveInteger } from './checkers.js'
+import { checkPositiveInteger } from './checkers'
 
 /**
  * Universal sort of an array (destructive).

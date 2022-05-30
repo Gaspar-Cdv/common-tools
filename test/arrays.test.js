@@ -1,4 +1,4 @@
-const { chunk, clone, count, countItems, createMulti, divide, groupBy, inArray, partition, rotate, sort, turnLeft, turnRight, unique, zip } = require('../generated/src/arrays.js')
+const { chunk, clone, count, countItems, createMulti, divide, groupBy, inArray, partition, rotate, sort, turnLeft, turnRight, unique, zip } = require('../generated/src/arrays')
 
 describe('sort', () => {
   const SHUFFLED_NUMBER_ARRAY = [5, 10, -2, 7, -12, 0]
