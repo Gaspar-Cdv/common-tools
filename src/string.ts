@@ -162,6 +162,16 @@ export function toKebabCase (str: string, except: string = '') {
   return str.split(regex).filter(x => x !== '').join('-')
 }
 
+/**
+ * Convert a string to PascalCase.
+ * Remove all punctuations and diacritics.
+ * The except argument is a string of characters to keep.
+ */
+export function toPascalCase (str: string, except: string = '') {
+  str = removeDiacritics(str).toLowerCase()
+  const regex = createRegex(PUNCT, except)
+  return str.split(regex).filter(x => x !== '').map(x => toTitleCase(x)).join('')
+}
 
 /******************** STRING MANIPULATION ********************/
 
