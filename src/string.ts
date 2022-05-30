@@ -1,6 +1,6 @@
 /******************** STRING CONSTANTS ********************/
 
-import { createRegex } from './regex'
+import { createRegex, escapeRegex } from './regex'
 
 
 export const LOWER = "abcdefghijklmnopqrstuvwxyzàáâãäåæçèéêëìíîïñòóôõöøùúûüýÿœ"
@@ -30,8 +30,8 @@ export function removeDiacritics (str: string): string {
  * Remove all punctuations from a string.
  * The except argument is a string of characters to keep.
  */
-export function removePunctuation (str: string, except = '') {
-  return str.replace(createRegex(PUNCT, except), '')
+export function removePunctuation (str: string, except = ' ') {
+  return str.replace(createRegex(PUNCT, except), '').trim()
 }
 
 
@@ -85,7 +85,7 @@ export function isAlnum (string: string): boolean {
  * @returns true if the string contains only punctuation characters, false otherwise.
  */
 export function isPunct (string: string): boolean {
-  return new RegExp("^[" + PUNCT + "]+$").test(string)
+  return new RegExp("^[" + escapeRegex(PUNCT) + "]+$").test(string)
 }
 
 
@@ -94,7 +94,7 @@ export function isPunct (string: string): boolean {
  * @returns true if the argument is a valid number, false otherwise.
  */
 export function isNum (n: any) {
-  return (typeof n === 'number' && !isNaN(n)) || (typeof n === 'string' && typeof +n === 'number')
+  return (typeof n === 'number' && !isNaN(n)) || (typeof n === 'string' && typeof +n === 'number' && n == (+n).toString())
 }
 
 
@@ -189,8 +189,8 @@ export function cut (str: string, start: number, end = start + 1) {
  * Center a string by adding the fill argument on both sides, until it reaches the specified length.
  */
 export function padCenter (str: string, length: number, fill = ' ') {
-  const left = Math.floor((length - str.length) / 2)
-  const right = length - str.length - left
+  const left = Math.max(0, Math.floor((length - str.length) / 2))
+  const right = Math.max(0, length - str.length - left)
   return fill.repeat(left) + str + fill.repeat(right)
 }
 
