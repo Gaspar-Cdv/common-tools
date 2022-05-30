@@ -42,14 +42,18 @@ export function choice<T> (array: T[], remove = false): T | undefined {
 
 /**
  * Pick randomly n elements from an array.
- * Set replacement to trye if you want your sample to be a replacement sample.
+ * Set replacement to true if you want your sample to be a replacement sample.
+ * Undefined values are ignored.
  */
 export function sample<T> (array: T[], n = 1, replacement = false): T[] {
   checkPositiveInteger(n, 'n')
   const clone = [...array]
   const choices = []
   for (let i = 0; i < n; i++) {
-    choices.push(choice(clone, !replacement))
+    const picked = choice(clone, !replacement)
+    if (picked !== undefined) {
+      choices.push(picked)
+    }
   }
   return choices as T[]
 }
