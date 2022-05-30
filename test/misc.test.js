@@ -4,11 +4,11 @@ describe('getType', () => {
   it('should return the type of the specified value', () => {
     expect(getType(1)).toBe('number')
     expect(getType(Infinity)).toBe('number')
+    expect(getType(NaN)).toBe('number')
     expect(getType('a')).toBe('string')
     expect(getType(true)).toBe('boolean')
     expect(getType(null)).toBe('null')
     expect(getType(undefined)).toBe('undefined')
-    expect(getType(NaN)).toBe('nan')
     expect(getType([])).toBe('array')
     expect(getType({})).toBe('object')
     expect(getType(() => { })).toBe('function')
