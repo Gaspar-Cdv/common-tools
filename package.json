@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "dev": "tsc-watch --noClear -p ./tsconfig.json --onSuccess \"node ./index.js\""
+    "dev": "tsc-watch --noClear -p ./tsconfig.json --onSuccess \"node ./generated/index.js\""
   },
   "repository": {
     "type": "git",
