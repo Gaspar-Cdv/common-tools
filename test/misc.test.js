@@ -1,4 +1,4 @@
-const { getType } = require('../generated/src/misc')
+const { getType, memoize } = require('../generated/src/misc')
 
 
 describe('getType', () => {
@@ -37,5 +37,19 @@ describe('getType', () => {
     expect(getType(new SharedArrayBuffer())).toBe('sharedarraybuffer')
     expect(getType(new DataView(new ArrayBuffer()))).toBe('dataview')
     expect(getType(new URL('http://example.com'))).toBe('url')
+  })
+})
+
+
+describe('memoize', () => {
+  it('should memoize a function', () => {
+    const callback = jest.fn((a, b) => a + b)
+    const memoized = memoize(callback)
+    memoized(1, 2)
+    memoized(1, 2)
+    expect(callback).toHaveBeenCalledTimes(1)
+    memoized(3, 4)
+    memoized(3, 4)
+    expect(callback).toHaveBeenCalledTimes(2)
   })
 })
