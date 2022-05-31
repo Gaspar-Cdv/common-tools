@@ -50,7 +50,6 @@ describe('slope', () => {
     expect(slope(1, 1, 2, 0)).toBe(-1)
     expect(slope(1, 1, 2, 1)).toBe(0)
     expect(slope(1, 1, 2, 2)).toBe(1)
-
   })
   it('should return Infinity for vertical lines and lines of length 0', () => {
     expect(slope(1, 1, 1, 0)).toBe(Infinity)

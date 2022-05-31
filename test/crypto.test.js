@@ -1,5 +1,6 @@
 const { vigenere, caesar } = require('../generated/src/crypto')
 
+
 describe('vigenere', () => {
   const MESSAGE = 'Hello World!'
   const KEY = 'key'

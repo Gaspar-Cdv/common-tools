@@ -1,4 +1,26 @@
-const { removeDiacritics, removePunctuation, isLower, isUpper, isAlpha, isAlnum, isPunct, isNum, toTitleCase, toSentenceCase, swapCase, toCamelCase, toSnakeCase, toKebabCase, cut, toPascalCase, padCenter, normalize, trim, getAlphabetPosition } = require('../generated/src/string')
+const {
+  removeDiacritics,
+  removePunctuation,
+  isLower,
+  isUpper,
+  isAlpha,
+  isAlnum,
+  isPunct,
+  isNum,
+  toTitleCase,
+  toSentenceCase,
+  swapCase,
+  toCamelCase,
+  toSnakeCase,
+  toKebabCase,
+  cut,
+  toPascalCase,
+  padCenter,
+  normalize,
+  trim,
+  getAlphabetPosition
+} = require('../generated/src/string')
+
 
 describe('removeDiacritics', () => {
   it('should remove diacritics', () => {

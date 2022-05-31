@@ -1,5 +1,6 @@
 const { getPages } = require('../generated/src/html')
 
+
 describe('getPages', () => {
   it('should return a list of pages with ellipsis on both sides', () => {
     expect(getPages(5, 10, 0)).toEqual([1, '...', 5, '...', 10])

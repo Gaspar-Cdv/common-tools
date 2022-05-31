@@ -1,5 +1,6 @@
 const { randomInt, chance, choice, sample, shuffled, shuffle } = require('../generated/src/random')
 
+
 describe('randomInt', () => {
   it('should return a random integer between min and max', () => {
     const MIN = -100
@@ -21,7 +22,6 @@ describe('chance', () => {
     for (let i = 0; i < 1000; i++) {
       chance() ? trueCount++ : falseCount++
     }
-    console.log(`trueCount: ${trueCount}, falseCount: ${falseCount}`)
     expect(trueCount).toBeCloseTo(falseCount, -2)
   })
   it('should always return true if chance is 100', () => {

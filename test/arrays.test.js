@@ -1,4 +1,21 @@
-const { chunk, clone, count, countItems, createMulti, divide, groupBy, inArray, partition, rotate, sort, turnLeft, turnRight, unique, zip } = require('../generated/src/arrays')
+const {
+  chunk,
+  clone,
+  count,
+  countItems,
+  createMulti,
+  divide,
+  groupBy,
+  inArray,
+  partition,
+  rotate,
+  sort,
+  turnLeft,
+  turnRight,
+  unique,
+  zip
+} = require('../generated/src/arrays')
+
 
 describe('sort', () => {
   const SHUFFLED_NUMBER_ARRAY = [5, 10, -2, 7, -12, 0]
@@ -110,21 +127,18 @@ describe('zip', () => {
   const DIFFERENT_SIZE_ARRAYS_3 = [['a', 1], ['b', 2], ['c', 3, 'extra']]
   const DIFFERENT_SIZE_ARRAYS_4 = [['a', 'b', 'c'], [1, 2, 3], [undefined, undefined, 'extra']]
 
-  test('if the arrays have the same size', () => {
+  it('should zip arrays of same size', () => {
     expect(zip(...SAME_SIZE_ARRAYS_1)).toEqual(SAME_SIZE_ARRAYS_2)
     expect(zip(...SAME_SIZE_ARRAYS_2)).toEqual(SAME_SIZE_ARRAYS_1)
   })
-
-  test('if the arrays have different size', () => {
+  it('should zip arrays of different size', () => {
     expect(zip(...DIFFERENT_SIZE_ARRAYS_1)).toEqual(DIFFERENT_SIZE_ARRAYS_2)
     expect(zip(...DIFFERENT_SIZE_ARRAYS_3)).toEqual(DIFFERENT_SIZE_ARRAYS_4)
   })
-
-  test('if there is only one array', () => {
+  it('should zip a single array', () => {
     expect(zip([1, 2, 3])).toEqual([[1], [2], [3]])
   })
-
-  test('if one or all the arrays are empty', () => {
+  it('should zip empty arrays', () => {
     expect(zip([], [1, 2, 3])).toEqual([[undefined, 1], [undefined, 2], [undefined, 3]])
     expect(zip([], [], [])).toEqual([])
     expect(zip([])).toEqual([])
@@ -177,6 +191,7 @@ describe('clone', () => {
 
 describe('rotate', () => {
   const ARRAY = [1, 2, 3]
+  const STRING = '123'
 
   it('should rotate array to the right', () => {
     expect(rotate(ARRAY, 1)).toEqual([3, 1, 2])
@@ -191,9 +206,6 @@ describe('rotate', () => {
   it('should not rotate array if the number of rotations is 0', () => {
     expect(rotate(ARRAY, 0)).toEqual(ARRAY)
   })
-
-  const STRING = '123'
-
   it('should rotate string to the right', () => {
     expect(rotate(STRING, 1)).toEqual('312')
   })
@@ -218,8 +230,6 @@ describe('groupBy', () => {
   it('should return an empty array if the array is empty', () => {
     expect(groupBy([])).toEqual([])
   })
-
-
   it('should group every consecutive value in a string', () => {
     expect(groupBy('aaabbcbbbb')).toEqual(['aaa', 'bb', 'c', 'bbbb'])
     expect(groupBy('abcb')).toEqual(['a', 'b', 'c', 'b'])
@@ -231,6 +241,7 @@ describe('groupBy', () => {
 
 describe('chunk', () => {
   const ARRAY = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  const STRING = '123456789'
 
   it('should split an array into chunks of equal size', () => {
     expect(chunk(ARRAY, 3)).toEqual([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
@@ -244,9 +255,6 @@ describe('chunk', () => {
   it('should return an empty array if the array is empty', () => {
     expect(chunk([], 3)).toEqual([])
   })
-
-  const STRING = '123456789'
-
   it('should split a string into chunks of equal size', () => {
     expect(chunk(STRING, 3)).toEqual(['123', '456', '789'])
   })
@@ -269,6 +277,7 @@ describe('chunk', () => {
 
 describe('divide', () => {
   const ARRAY = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  const STRING = '123456789'
 
   it('should divide an array into chunks of equal size', () => {
     expect(divide(ARRAY, 3)).toEqual([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
@@ -283,9 +292,6 @@ describe('divide', () => {
   it('should return an empty array if the array is empty', () => {
     expect(divide([], 3)).toEqual([])
   })
-
-  const STRING = '123456789'
-
   it('should divide a string into chunks of equal size', () => {
     expect(divide(STRING, 3)).toEqual(['123', '456', '789'])
   })
@@ -299,7 +305,6 @@ describe('divide', () => {
   it('should return an empty array if the string is empty', () => {
     expect(divide('', 3)).toEqual([])
   })
-
   it('should throw an error if n is negative or not an integer', () => {
     expect(() => divide(ARRAY, -1)).toThrow()
     expect(() => divide(ARRAY, 1.5)).toThrow()
@@ -334,7 +339,6 @@ describe('createMulti', () => {
   it('should create a multi-dimensional array with specified value', () => {
     expect(createMulti(4, 2, 0)).toEqual(MULTIDIMENSIONAL_ARRAY_CUSTOM)
   })
-
   it('should throw an error if height or weight are negatives or not an integers', () => {
     expect(() => createMulti(-1, 1)).toThrow()
     expect(() => createMulti(1, -1)).toThrow()

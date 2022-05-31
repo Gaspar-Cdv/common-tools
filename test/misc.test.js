@@ -1,5 +1,6 @@
 const { getType } = require('../generated/src/misc')
 
+
 describe('getType', () => {
   it('should return the type of the specified value', () => {
     expect(getType(1)).toBe('number')

@@ -1,4 +1,15 @@
-const { nthRoot, sigma, round, clamp, modulo, isPrime, fillZeros, range, factorial, factorialIterative } = require('../generated/src/maths')
+const {
+  nthRoot,
+  sigma,
+  round,
+  clamp,
+  modulo,
+  isPrime,
+  fillZeros,
+  range,
+  factorial,
+  factorialIterative
+} = require('../generated/src/maths')
 
 
 describe('nthRoot', () => {
