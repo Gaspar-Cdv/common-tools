@@ -1,4 +1,4 @@
-const { getPages } = require('../generated/src/html')
+const { getPages, debounce, throttle } = require('../generated/src/html')
 
 
 describe('getPages', () => {
@@ -34,5 +34,57 @@ describe('getPages', () => {
     expect(() => getPages(1, 1.5, 1)).toThrow()
     expect(() => getPages(-1, 1, 1)).toThrow()
     expect(() => getPages(1.5, 1, 1)).toThrow()
+  })
+})
+
+
+describe('debounce', () => {
+  jest.useFakeTimers()
+  const DELAY = 1000
+
+  it('should call the callback once after the debounced function being called many times', async () => {
+    const callback = jest.fn()
+    const debounced = debounce(callback, DELAY * 2)
+
+    for (let i = 0; i < 100; i++) {
+      debounced()
+      jest.advanceTimersByTime(DELAY)
+      expect(callback).not.toHaveBeenCalled()
+    }
+    jest.advanceTimersByTime(DELAY)
+    expect(callback).toHaveBeenCalledTimes(1)
+  })
+  it('should call the callback once at the first time the debounced function being called', async () => {
+    const callback = jest.fn()
+    const debounced = debounce(callback, DELAY * 2, true)
+
+    debounced()
+    expect(callback).toHaveBeenCalled()
+    for (let i = 0; i < 100; i++) {
+      debounced()
+      jest.advanceTimersByTime(DELAY)
+      expect(callback).toHaveBeenCalledTimes(1)
+    }
+    jest.advanceTimersByTime(DELAY)
+    expect(callback).toHaveBeenCalledTimes(1)
+  })
+})
+
+
+describe('throttle', () => {
+  jest.useFakeTimers()
+  const DELAY = 1000
+
+  it('should call the callback every specified time', async () => {
+    const callback = jest.fn()
+    const throttled = throttle(callback, DELAY)
+
+    for (let i = 0; i < 100; i++) {
+      throttled()
+      jest.advanceTimersByTime(DELAY / 10)
+    }
+    expect(callback).toHaveBeenCalledTimes(10)
+    jest.advanceTimersByTime(DELAY)
+    expect(callback).toHaveBeenCalledTimes(11) // the last call with timeout
   })
 })
