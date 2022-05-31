@@ -1,6 +1,7 @@
 import { checkPositiveInteger } from './checkers'
 import { clamp, range } from './maths'
 
+
 /**
  * Get a random integer, from a to b excluded, with a specified step.
  * Distribution = 1 means uniform distribution.

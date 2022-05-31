@@ -1,6 +1,7 @@
-/******************** STRING CONSTANTS ********************/
-
 import { createRegex, escapeRegex } from './regex'
+
+
+/******************** STRING CONSTANTS ********************/
 
 
 export const LOWER = "abcdefghijklmnopqrstuvwxyzàáâãäåæçèéêëìíîïñòóôõöøùúûüýÿœ"
@@ -9,6 +10,8 @@ export const NUMBERS = "0123456789"
 export const PUNCT = "!'#$%&\"()*+-,./:;<=>?@[\\]^_`{|}~ "
 export const PUNCT_REGEX = /[\!'#$%&"()*+-,./:;<=>\?@[\\\]^_`{|}~ ]/g
 
+// UNICODE RANGES
+//
 // [a-z] -> [97-122]
 // [A-Z] -> [65-90]
 // [0-9] -> [48-57]
@@ -30,7 +33,7 @@ export function removeDiacritics (str: string): string {
  * Remove all punctuations from a string.
  * The except argument is a string of characters to keep.
  */
-export function removePunctuation (str: string, except = ' ') {
+export function removePunctuation (str: string, except = ' '): string {
   return str.replace(createRegex(PUNCT, except), '').trim()
 }
 
@@ -93,7 +96,7 @@ export function isPunct (string: string): boolean {
  * Check if the string (or the number) is a valid number.
  * @returns true if the argument is a valid number, false otherwise.
  */
-export function isNum (n: any) {
+export function isNum (n: any): boolean {
   return (typeof n === 'number' && !isNaN(n)) || (typeof n === 'string' && typeof +n === 'number' && n == (+n).toString())
 }
 
@@ -104,7 +107,7 @@ export function isNum (n: any) {
 /**
  * Convert a string to title case (all words are capitalized).
  */
-export function toTitleCase (str: string) {
+export function toTitleCase (str: string): string {
   return str.split(/( *[.!?, ] *)/).filter(x => x !== '').map(x => x[0].toUpperCase() + x.slice(1).toLowerCase()).join('')
 }
 
@@ -112,7 +115,7 @@ export function toTitleCase (str: string) {
 /**
  * Convert a string to sentence case (all sentences are capitalized).
  */
-export function toSentenceCase (str: string) {
+export function toSentenceCase (str: string): string {
   return str.split(/( *[.!?] *)/).filter(x => x !== '').map(x => x[0].toUpperCase() + x.slice(1).toLowerCase()).join('')
 }
 
@@ -120,7 +123,7 @@ export function toSentenceCase (str: string) {
 /**
  * Invert the case of a string.
  */
-export function swapCase (str: string) {
+export function swapCase (str: string): string {
   return str.split('').map(x => x === x.toUpperCase() ? x.toLowerCase() : x.toUpperCase()).join('')
 }
 
@@ -130,7 +133,7 @@ export function swapCase (str: string) {
  * Remove all punctuations and diacritics.
  * The except argument is a string of characters to keep.
  */
-export function toCamelCase (str: string, except: string = '') {
+export function toCamelCase (str: string, except: string = ''): string {
   str = removeDiacritics(str)
   const regex = createRegex(PUNCT, except)
   return str.split(regex)
@@ -144,7 +147,7 @@ export function toCamelCase (str: string, except: string = '') {
  * Remove all punctuations and diacritics.
  * The except argument is a string of characters to keep.
  */
-export function toSnakeCase (str: string, except: string = '') {
+export function toSnakeCase (str: string, except: string = ''): string {
   str = removeDiacritics(str).toLowerCase()
   const regex = createRegex(PUNCT, except)
   return str.split(regex).filter(x => x !== '').join('_')
@@ -156,7 +159,7 @@ export function toSnakeCase (str: string, except: string = '') {
  * Remove all punctuations and diacritics.
  * The except argument is a string of characters to keep.
  */
-export function toKebabCase (str: string, except: string = '') {
+export function toKebabCase (str: string, except: string = ''): string {
   str = removeDiacritics(str).toLowerCase()
   const regex = createRegex(PUNCT, except)
   return str.split(regex).filter(x => x !== '').join('-')
@@ -167,7 +170,7 @@ export function toKebabCase (str: string, except: string = '') {
  * Remove all punctuations and diacritics.
  * The except argument is a string of characters to keep.
  */
-export function toPascalCase (str: string, except: string = '') {
+export function toPascalCase (str: string, except: string = ''): string {
   str = removeDiacritics(str).toLowerCase()
   const regex = createRegex(PUNCT, except)
   return str.split(regex).filter(x => x !== '').map(x => toTitleCase(x)).join('')
@@ -180,7 +183,7 @@ export function toPascalCase (str: string, except: string = '') {
  * Splice a string from start to end.
  * If end is not specified, it will cut only one character.
  */
-export function cut (str: string, start: number, end = start + 1) {
+export function cut (str: string, start: number, end = start + 1): string {
   return str.slice(0, start) + str.slice(end)
 }
 
@@ -188,7 +191,7 @@ export function cut (str: string, start: number, end = start + 1) {
 /**
  * Center a string by adding the fill argument on both sides, until it reaches the specified length.
  */
-export function padCenter (str: string, length: number, fill = ' ') {
+export function padCenter (str: string, length: number, fill = ' '): string {
   const left = Math.max(0, Math.floor((length - str.length) / 2))
   const right = Math.max(0, length - str.length - left)
   return fill.repeat(left) + str + fill.repeat(right)
@@ -197,7 +200,7 @@ export function padCenter (str: string, length: number, fill = ' ') {
 /**
  * Normalize a string by trimming it, and removing double spaces.
  */
-export function normalize (str: string) {
+export function normalize (str: string): string {
   return str.trim().replace(/\s+/g, ' ')
 }
 
@@ -206,7 +209,7 @@ export function normalize (str: string) {
  * Trim a string.
  * Remove the specified chars at the start and end of the string.
  */
-export function trim (str: string, chars = ' ') {
+export function trim (str: string, chars = ' '): string {
   return str.replace(new RegExp('^[' + chars + ']+|[' + chars + ']+$', 'g'), '')
 }
 
@@ -216,7 +219,7 @@ export function trim (str: string, chars = ' ') {
  * A is 1, B is 2, ..., Z is 26.
  * @returns the position of the letter in the alphabet, or -1 if the letter is not in the alphabet.
  */
-export function getAlphabetPosition (letter: string) {
+export function getAlphabetPosition (letter: string): number {
   const code = removeDiacritics(letter.toUpperCase()).charCodeAt(0)
   return code > 64 && code < 91 ? code - 64 : -1
 }

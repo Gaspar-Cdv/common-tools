@@ -5,6 +5,7 @@ export function getType (element: any): string {
   return toString.call(element).slice(8, -1).toLowerCase()
 }
 
+
 /**
  * Calculate the benchmark for a specific callback.
  * You can choose the number of tests. Default is 100000.

@@ -1,5 +1,6 @@
 import { removeDiacritics } from './string'
 
+
 /**
  * Vigenere cipher.
  * Encore or decodes a message using a key.

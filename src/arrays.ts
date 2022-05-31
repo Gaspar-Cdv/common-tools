@@ -1,5 +1,6 @@
 import { checkPositiveInteger } from './checkers'
 
+
 /**
  * Universal sort of an array (destructive).
  */
@@ -35,7 +36,7 @@ export function unique (array: any[]): any[] {
 /**
  * @returns the number of times a value appears in a string or an array.
  */
-export function count<T> (value: T | string, element: T[] | string) {
+export function count<T> (value: T | string, element: T[] | string): number {
   let count = 0
   for (let i = 0, l = element.length; i < l; i++) {
     if (element[i] === value) count++
@@ -60,7 +61,7 @@ export function countItems (element: any[] | string): { [key: string]: number } 
 /**
  * Zip arrays together.
  */
-export function zip (...arrays: any[][]) {
+export function zip (...arrays: any[][]): any[][] {
   const zippedArray = []
   const longest = Math.max(...arrays.map(x => x.length))
   for (let i = 0; i < longest; i++) {
@@ -104,9 +105,6 @@ export function rotateInternal (array: any[], n = 1) {
 }
 
 
-/******************** ARRAY DIVISION ********************/
-
-
 /**
  * Convert array or string to array, grouping identical consecultive values together.
  */
@@ -147,7 +145,7 @@ export function chunk (element: any[] | string, n: number): any[] {
  * Default value is true.
  * @returns an array of n arrays of equal size.
  */
-export function divide (element: any[] | string, n: number, biggerOnStart = true) {
+export function divide (element: any[] | string, n: number, biggerOnStart = true): (any[] | string)[] {
   checkPositiveInteger(n, 'n')
 
   let length = element.length
@@ -187,14 +185,11 @@ export function partition (array: any[], callback: (value: any, index: number, a
 }
 
 
-/******************** MULTIDIMENSIONAL ARRAY ********************/
-
-
 /**
  * Initialize a multidimensional array with specified value (default is undefined)
  * @returns a multidimensional array
  */
-export function createMulti (height: number, width: number, value: any = undefined) {
+export function createMulti (height: number, width: number, value: any = undefined): any[][] {
   checkPositiveInteger(height, 'height')
   checkPositiveInteger(width, 'width')
 

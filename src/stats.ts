@@ -1,6 +1,7 @@
 import { checkPositiveInteger } from './checkers'
 import { factorial } from './maths'
 
+
 /**
  * Calculate the number of k-permutations of n.
  */

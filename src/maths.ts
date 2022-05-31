@@ -1,5 +1,6 @@
 import { checkPositiveInteger } from './checkers'
 
+
 /**
  * Calculate the nth root of a given number.
  */

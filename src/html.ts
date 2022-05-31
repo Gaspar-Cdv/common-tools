@@ -1,7 +1,5 @@
-// TODO
-// Debounce and throttle
-
 import { checkPositiveInteger } from './checkers'
+
 
 function insertIf(condition: boolean, ...values: any[]): any[] {
   return condition ? values : []
@@ -26,3 +24,6 @@ export function getPages (currentPage: number, nbPages: number, distance: number
   ]
 }
 
+
+// TODO
+// Debounce and throttle
