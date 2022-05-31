@@ -1,7 +1,7 @@
 import { checkPositiveInteger } from './checkers'
 
 
-function insertIf(condition: boolean, ...values: any[]): any[] {
+function insertIf (condition: boolean, ...values: any[]): any[] {
   return condition ? values : []
 }
 
@@ -25,5 +25,54 @@ export function getPages (currentPage: number, nbPages: number, distance: number
 }
 
 
-// TODO
-// Debounce and throttle
+/**
+ * Debounces a callback after the specified delay.
+ * Set immediate to true to execute the function immediately instead of after.
+ * @returns the debounced function
+ */
+export function debounce (callback: Function, delay: number, immediate = false): () => void {
+  let timeout: NodeJS.Timeout | null
+
+  return function () {
+    const later = () => {
+      clearTimeout(timeout!)
+      if (!immediate) {
+        // @ts-ignore
+        callback.apply(this, arguments)
+      }
+    }
+
+    if (!timeout && immediate) {
+      // @ts-ignore
+      callback.apply(this, arguments)
+    }
+
+    clearTimeout(timeout!)
+    timeout = setTimeout(later, delay)
+  }
+}
+
+
+/**
+ * Throttles a callback after the specified delay.
+ * @returns the throttled function
+ */
+export function throttle (callback: Function, delay: number): Function {
+  let last: number
+  let timeout: NodeJS.Timeout | null
+
+  return function () {
+    const now = Date.now()
+    const apply = () => {
+      // @ts-ignore
+      callback.apply(this, arguments)
+      last = now
+    }
+    if (last && now < last + delay) {
+      clearTimeout(timeout!)
+      timeout = setTimeout(apply, delay)
+    } else {
+      apply()
+    }
+  }
+}
