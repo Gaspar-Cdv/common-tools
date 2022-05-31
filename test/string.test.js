@@ -50,76 +50,76 @@ describe('removePunctuation', () => {
 
 
 describe('isLower', () => {
-  test('if the strict argument is false', () => {
-    expect(isLower('hello')).toBe(true)
-    expect(isLower('hello, world !')).toBe(true)
-    expect(isLower('HELLO')).toBe(false)
-    expect(isLower('Hello, World !')).toBe(false)
+  it('should return true if the string is lowercase', () => {
+    expect(isLower('hello')).toBeTruthy()
+    expect(isLower('hello, world !')).toBeTruthy()
+    expect(isLower('HELLO')).toBeFalsy()
+    expect(isLower('Hello, World !')).toBeFalsy()
   })
-  test('if the strict argument is true', () => {
-    expect(isLower('hello', true)).toBe(true)
-    expect(isLower('hello, world !', true)).toBe(false)
-    expect(isLower('HELLO', true)).toBe(false)
-    expect(isLower('Hello, World !', true)).toBe(false)
+  it('should return true if the string is strictly lowercase', () => {
+    expect(isLower('hello', true)).toBeTruthy()
+    expect(isLower('hello, world !', true)).toBeFalsy()
+    expect(isLower('HELLO', true)).toBeFalsy()
+    expect(isLower('Hello, World !', true)).toBeFalsy()
   })
 })
 
 
 describe('isUpper', () => {
-  test('if the strict argument is false', () => {
-    expect(isUpper('hello')).toBe(false)
-    expect(isUpper('hello, world !')).toBe(false)
-    expect(isUpper('HELLO')).toBe(true)
-    expect(isUpper('HELLO WORLD !')).toBe(true)
+  it('should return true if the string is uppercase', () => {
+    expect(isUpper('hello')).toBeFalsy()
+    expect(isUpper('hello, world !')).toBeFalsy()
+    expect(isUpper('HELLO')).toBeTruthy()
+    expect(isUpper('HELLO WORLD !')).toBeTruthy()
   })
-  test('if the strict argument is true', () => {
-    expect(isUpper('hello', true)).toBe(false)
-    expect(isUpper('hello, world !', true)).toBe(false)
-    expect(isUpper('HELLO', true)).toBe(true)
-    expect(isUpper('HELLO WORLD !', true)).toBe(false)
+  it('should return true if the string is strictly uppercase', () => {
+    expect(isUpper('hello', true)).toBeFalsy()
+    expect(isUpper('hello, world !', true)).toBeFalsy()
+    expect(isUpper('HELLO', true)).toBeTruthy()
+    expect(isUpper('HELLO WORLD !', true)).toBeFalsy()
   })
 })
 
 
 describe('isAlpha', () => {
   it('should return true if the string is made of only letters', () => {
-    expect(isAlpha('hello')).toBe(true)
-    expect(isAlpha('hello, world !')).toBe(false)
-    expect(isAlpha('HELLO')).toBe(true)
-    expect(isAlpha('Hello, World !')).toBe(false)
-    expect(isAlpha('hello 123')).toBe(false)
+    expect(isAlpha('hello')).toBeTruthy()
+    expect(isAlpha('hello, world !')).toBeFalsy()
+    expect(isAlpha('HELLO')).toBeTruthy()
+    expect(isAlpha('Hello, World !')).toBeFalsy()
+    expect(isAlpha('hello 123')).toBeFalsy()
   })
 })
 
 
 describe('isAlnum', () => {
   it('should return true if the string is made of only letters and numbers', () => {
-    expect(isAlnum('hello')).toBe(true)
-    expect(isAlnum('hello, world !')).toBe(false)
-    expect(isAlnum('HELLO')).toBe(true)
-    expect(isAlnum('Hello, World !')).toBe(false)
-    expect(isAlnum('hello123')).toBe(true)
-    expect(isAlnum('hello 123')).toBe(false)
+    expect(isAlnum('hello')).toBeTruthy()
+    expect(isAlnum('hello, world !')).toBeFalsy()
+    expect(isAlnum('HELLO')).toBeTruthy()
+    expect(isAlnum('Hello, World !')).toBeFalsy()
+    expect(isAlnum('hello123')).toBeTruthy()
+    expect(isAlnum('hello 123')).toBeFalsy()
   })
 })
 
 
 describe('isPunct', () => {
   it('should return true if the string is made of only punctuation', () => {
-    expect(isPunct('?')).toBe(true)
-    expect(isPunct('hello, world !')).toBe(false)
-    expect(isPunct('!@#$%^&*()_+-=[]{};:\'\\"|,./<>?`~')).toBe(true)
+    expect(isPunct('?')).toBeTruthy()
+    expect(isPunct('hello, world !')).toBeFalsy()
+    expect(isPunct('!@#$%^&*()_+-=[]{};:\'\\"|,./<>?`~')).toBeTruthy()
   })
 })
 
 
 describe('isNum', () => {
   it('should return true if the string is made of only numbers', () => {
-    expect(isNum('123')).toBe(true)
-    expect(isNum(123)).toBe(true)
-    expect(isNum('hello 123')).toBe(false)
-    expect(isNum(Infinity)).toBe(true)
-    expect(isNum(NaN)).toBe(false)
+    expect(isNum('123')).toBeTruthy()
+    expect(isNum(123)).toBeTruthy()
+    expect(isNum('hello 123')).toBeFalsy()
+    expect(isNum(Infinity)).toBeTruthy()
+    expect(isNum(NaN)).toBeFalsy()
   })
 })
 
