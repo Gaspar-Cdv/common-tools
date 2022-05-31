@@ -19,3 +19,11 @@ export function benchmark (callback: Function, times = 100000): number {
   time = (time + Date.now()) / 1000
   return Math.round(times / time)
 }
+
+
+/**
+ * Wait the specified number of milliseconds.
+ */
+export function sleep (ms: number): Promise<void> {
+  return new Promise(resolve => setTimeout(resolve, ms))
+}
