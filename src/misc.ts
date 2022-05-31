@@ -27,3 +27,20 @@ export function benchmark (callback: Function, times = 100000): number {
 export function sleep (ms: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
+
+
+/**
+ * Memoise a function.
+ * @returns a memoised version of the function.
+ */
+export function memoize<T extends any[], U> (callback: (...args: T) => U): (...args: T) => U {
+  const cache: { [key: string]: any } = {}
+
+  return function (...args: T): U {
+    const key = JSON.stringify(args)
+    if (cache[key] === undefined) {
+      cache[key] = callback(...args)
+    }
+    return cache[key]
+  }
+}
