@@ -1,4 +1,4 @@
-import { checkPositiveInteger } from './checkers'
+import { checkInteger, checkLessThanOrEqual, checkPositiveInteger } from './checkers'
 
 
 /**
@@ -16,9 +16,7 @@ export function nthRoot (number: number, n: number): number {
 export function sigma (callback: (x: number) => number, a: number, b: number): number {
   checkPositiveInteger(a, 'a')
   checkPositiveInteger(b, 'b', false)
-  if (a > b) {
-    throw RangeError('The a argument must be less than or equal to the b argument.')
-  }
+  checkLessThanOrEqual(a, b, 'a', 'b')
   return [...Array(b - a)].map((_, i) => callback(i + a)).reduce((a, b) => a + b, 0)
 }
 
@@ -29,9 +27,7 @@ export function sigma (callback: (x: number) => number, a: number, b: number): n
  * If the precision is negative, the result is rounded to the left of the decimal point.
  */
 export function round (number: number, precision = 0): number {
-  if (!Number.isInteger(precision)) {
-    throw TypeError('The precision argument must be an integer.')
-  }
+  checkInteger(precision, 'precision')
   return Math.round(number * Math.pow(10, precision)) / Math.pow(10, precision)
 }
 
