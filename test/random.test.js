@@ -103,8 +103,8 @@ describe('sample', () => {
   })
   it('should throw an error if the sample size is negative or not an integer', () => {
     const array = [0, 1, 2, 3, 4, 5]
-    expect(() => sample(array, -1)).toThrow()
-    expect(() => sample(array, 1.5)).toThrow()
+    expect(() => sample(array, -1)).toThrow(TypeError)
+    expect(() => sample(array, 1.5)).toThrow(TypeError)
   })
 })
 

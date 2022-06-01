@@ -239,6 +239,7 @@ describe('groupBy', () => {
   })
 })
 
+
 describe('chunk', () => {
   const ARRAY = [1, 2, 3, 4, 5, 6, 7, 8, 9]
   const STRING = '123456789'
@@ -269,8 +270,8 @@ describe('chunk', () => {
   })
 
   it('should throw an error if n is negative or not an integer', () => {
-    expect(() => chunk(ARRAY, -1)).toThrow()
-    expect(() => chunk(ARRAY, 1.5)).toThrow()
+    expect(() => chunk(ARRAY, -1)).toThrow(TypeError)
+    expect(() => chunk(ARRAY, 1.5)).toThrow(TypeError)
   })
 })
 
@@ -306,8 +307,8 @@ describe('divide', () => {
     expect(divide('', 3)).toEqual([])
   })
   it('should throw an error if n is negative or not an integer', () => {
-    expect(() => divide(ARRAY, -1)).toThrow()
-    expect(() => divide(ARRAY, 1.5)).toThrow()
+    expect(() => divide(ARRAY, -1)).toThrow(TypeError)
+    expect(() => divide(ARRAY, 1.5)).toThrow(TypeError)
   })
 })
 
@@ -340,10 +341,10 @@ describe('createMulti', () => {
     expect(createMulti(4, 2, 0)).toEqual(MULTIDIMENSIONAL_ARRAY_CUSTOM)
   })
   it('should throw an error if height or weight are negatives or not an integers', () => {
-    expect(() => createMulti(-1, 1)).toThrow()
-    expect(() => createMulti(1, -1)).toThrow()
-    expect(() => createMulti(1, 1.5)).toThrow()
-    expect(() => createMulti(1.5, 1)).toThrow()
+    expect(() => createMulti(-1, 1)).toThrow(TypeError)
+    expect(() => createMulti(1, -1)).toThrow(TypeError)
+    expect(() => createMulti(1, 1.5)).toThrow(TypeError)
+    expect(() => createMulti(1.5, 1)).toThrow(TypeError)
   })
 })
 

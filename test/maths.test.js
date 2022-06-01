@@ -36,13 +36,13 @@ describe('sigma', () => {
     expect(sigma(CALLBACK, 1, 1000)).toBe(332833500)
   })
   it('should throw an error if a or b are not positive or are not integers', () => {
-    expect(() => sigma(CALLBACK, -2, 2)).toThrow()
-    expect(() => sigma(CALLBACK, 2, -2)).toThrow()
-    expect(() => sigma(CALLBACK, 1.5, 2)).toThrow()
-    expect(() => sigma(CALLBACK, 1, 1.5)).toThrow()
+    expect(() => sigma(CALLBACK, -2, 2)).toThrow(TypeError)
+    expect(() => sigma(CALLBACK, 2, -2)).toThrow(TypeError)
+    expect(() => sigma(CALLBACK, 1.5, 2)).toThrow(TypeError)
+    expect(() => sigma(CALLBACK, 1, 1.5)).toThrow(TypeError)
   })
   it('should throw an error if a is greater than b', () => {
-    expect(() => sigma(CALLBACK, 2, 1)).toThrow()
+    expect(() => sigma(CALLBACK, 2, 1)).toThrow(RangeError)
   })
 })
 
@@ -63,7 +63,7 @@ describe('round', () => {
     expect(round(123, -3)).toBe(0)
   })
   it('should throw an error if n is not an integer', () => {
-    expect(() => round(1.23, 1.5)).toThrow()
+    expect(() => round(1.23, 1.5)).toThrow(TypeError)
   })
 })
 

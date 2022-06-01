@@ -28,12 +28,12 @@ describe('getPages', () => {
     expect(getPages(1, 1, 2)).toEqual([1])
   })
   it('should throw an error if one of the parameter is not a positive integer', () => {
-    expect(() => getPages(1, 1, -1)).toThrow()
-    expect(() => getPages(1, 1, 1.5)).toThrow()
-    expect(() => getPages(1, -1, 1)).toThrow()
-    expect(() => getPages(1, 1.5, 1)).toThrow()
-    expect(() => getPages(-1, 1, 1)).toThrow()
-    expect(() => getPages(1.5, 1, 1)).toThrow()
+    expect(() => getPages(1, 1, -1)).toThrow(TypeError)
+    expect(() => getPages(1, 1, 1.5)).toThrow(TypeError)
+    expect(() => getPages(1, -1, 1)).toThrow(TypeError)
+    expect(() => getPages(1, 1.5, 1)).toThrow(TypeError)
+    expect(() => getPages(-1, 1, 1)).toThrow(TypeError)
+    expect(() => getPages(1.5, 1, 1)).toThrow(TypeError)
   })
 })
 
