@@ -1,4 +1,4 @@
-import { checkPositiveInteger } from './checkers'
+import { checkLessThanOrEqual, checkPositiveInteger } from './checkers'
 import { factorial } from './maths'
 
 
@@ -8,7 +8,8 @@ import { factorial } from './maths'
 export function perm (n: number, k: number): number {
   checkPositiveInteger(n, 'n', false)
   checkPositiveInteger(k, 'k', false)
-  return k > n ? 0 : factorial(n) / factorial(n - k)
+  checkLessThanOrEqual(k, n, 'k', 'n')
+  return factorial(n) / factorial(n - k)
 }
 
 
@@ -18,7 +19,8 @@ export function perm (n: number, k: number): number {
 export function comb (n: number, k: number): number {
   checkPositiveInteger(n, 'n', false)
   checkPositiveInteger(k, 'k', false)
-  return k == 0 || k == n ? 1 : n < k ? 0 : factorial(n) / (factorial(k) * factorial(n - k))
+  checkLessThanOrEqual(k, n, 'k', 'n')
+  return k == 0 || k == n ? 1 : factorial(n) / (factorial(k) * factorial(n - k))
 }
 
 
