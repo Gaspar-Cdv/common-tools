@@ -31,8 +31,9 @@ export function comb (n: number, k: number): number {
 export function getCombinations (array: any[], n = 0): any[][] {
   checkPositiveInteger(n, 'n', false)
   const combinations: any[][] = []
-
+  
   if (n === 0) { // get all combinations
+    const length = array.length
     for (let i = 0; i < 2 ** length; i++) {
       let sub = []
       for (let j = 0; j < length; j++) {
