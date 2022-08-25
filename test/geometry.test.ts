@@ -1,4 +1,4 @@
-const { distance, middle, slope, yIntercept } = require('../generated/src/geometry')
+const { distance, middle, slope, yIntercept } = require('../src/geometry')
 
 
 describe('distance', () => {

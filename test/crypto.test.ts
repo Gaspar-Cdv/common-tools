@@ -1,4 +1,4 @@
-const { vigenere, caesar } = require('../generated/src/crypto')
+const { vigenere, caesar } = require('../src/crypto')
 
 
 describe('vigenere', () => {

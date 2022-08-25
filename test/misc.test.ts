@@ -1,4 +1,4 @@
-const { getType, memoize } = require('../generated/src/misc')
+const { getType, memoize } = require('../src/misc')
 
 
 describe('getType', () => {

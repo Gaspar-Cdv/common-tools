@@ -19,7 +19,7 @@ const {
   normalize,
   trim,
   getAlphabetPosition
-} = require('../generated/src/string')
+} = require('../src/string')
 
 
 describe('removeDiacritics', () => {

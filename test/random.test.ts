@@ -1,4 +1,4 @@
-const { randomInt, chance, choice, sample, shuffled, shuffle } = require('../generated/src/random')
+const { randomInt, chance, choice, sample, shuffled, shuffle } = require('../src/random')
 
 
 describe('randomInt', () => {

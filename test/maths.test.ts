@@ -9,7 +9,7 @@ const {
   range,
   factorial,
   factorialIterative
-} = require('../generated/src/maths')
+} = require('../src/maths')
 
 
 describe('nthRoot', () => {

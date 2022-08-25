@@ -1,4 +1,4 @@
-const { union, intersection, without, symDiff } = require('../generated/src/sets')
+const { union, intersection, without, symDiff } = require('../src/sets')
 
 
 describe('union', () => {

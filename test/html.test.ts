@@ -1,4 +1,4 @@
-const { getPages, debounce, throttle } = require('../generated/src/html')
+const { getPages, debounce, throttle } = require('../src/html')
 
 
 describe('getPages', () => {

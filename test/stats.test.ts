@@ -1,4 +1,4 @@
-const { perm, comb, getCombinations } = require('../generated/src/stats')
+const { perm, comb, getCombinations } = require('../src/stats')
 
 
 describe('perm', () => {

@@ -14,7 +14,7 @@ const {
   turnRight,
   unique,
   zip
-} = require('../generated/src/arrays')
+} = require('../src/arrays')
 
 
 describe('sort', () => {

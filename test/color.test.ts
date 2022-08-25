@@ -1,4 +1,4 @@
-const { colorShader, fade, hexToRgb, assertIsValidHex } = require('../generated/src/color')
+const { colorShader, fade, hexToRgb, assertIsValidHex } = require('../src/color')
 
 const invalidHexs = [
 	'#',

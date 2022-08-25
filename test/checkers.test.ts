@@ -1,4 +1,4 @@
-const { checkPositiveInteger } = require('../generated/src/checkers')
+const { checkPositiveInteger } = require('../src/checkers')
 
 describe('checkPositiveInteger', () => {
   it('should throw an error if the parameter is not a strictly positive integer', () => {
