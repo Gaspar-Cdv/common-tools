@@ -313,7 +313,7 @@ describe('divide', () => {
 })
 
 describe('partition', () => {
-  const CONDITION = x => x % 2 === 0
+  const CONDITION = (x: number) => x % 2 === 0
   const TRUE_VALUES = [2, 4, 6, 8]
   const FALSE_VALUES = [1, 3, 5, 7, 9]
   const MIXED_VALUES = [1, 2, 3, 4, 5, 6, 7, 8, 9]
