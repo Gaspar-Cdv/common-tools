@@ -1,4 +1,4 @@
-const { randomInt, chance, choice, sample, shuffled, shuffle } = require('../src/random')
+import { randomInt, chance, choice, sample, shuffled, shuffle } from '../src/random'
 
 
 describe('randomInt', () => {

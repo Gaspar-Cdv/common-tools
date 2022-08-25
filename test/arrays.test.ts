@@ -1,20 +1,20 @@
-const {
-  chunk,
-  clone,
-  count,
-  countItems,
-  createMulti,
-  divide,
-  groupBy,
-  inArray,
-  partition,
-  rotate,
-  sort,
-  turnLeft,
-  turnRight,
-  unique,
-  zip
-} = require('../src/arrays')
+import {
+	chunk,
+	clone,
+	count,
+	countItems,
+	createMulti,
+	divide,
+	groupBy,
+	inArray,
+	partition,
+	rotate,
+	sort,
+	turnLeft,
+	turnRight,
+	unique,
+	zip
+} from '../src/arrays'
 
 
 describe('sort', () => {

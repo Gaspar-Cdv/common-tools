@@ -1,4 +1,4 @@
-const { vigenere, caesar } = require('../src/crypto')
+import { vigenere, caesar } from '../src/crypto'
 
 
 describe('vigenere', () => {

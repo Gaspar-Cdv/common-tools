@@ -1,4 +1,4 @@
-const { perm, comb, getCombinations } = require('../src/stats')
+import { perm, comb, getCombinations } from '../src/stats'
 
 
 describe('perm', () => {

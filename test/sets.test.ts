@@ -1,4 +1,4 @@
-const { union, intersection, without, symDiff } = require('../src/sets')
+import { union, intersection, without, symDiff } from '../src/sets'
 
 
 describe('union', () => {

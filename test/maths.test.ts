@@ -1,15 +1,15 @@
-const {
-  nthRoot,
-  sigma,
-  round,
-  clamp,
-  modulo,
-  isPrime,
-  fillZeros,
-  range,
-  factorial,
-  factorialIterative
-} = require('../src/maths')
+import {
+	nthRoot,
+	sigma,
+	round,
+	clamp,
+	modulo,
+	isPrime,
+	fillZeros,
+	range,
+	factorial,
+	factorialIterative
+} from '../src/maths'
 
 
 describe('nthRoot', () => {

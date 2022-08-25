@@ -1,4 +1,4 @@
-const { getType, memoize } = require('../src/misc')
+import { getType, memoize } from '../src/misc'
 
 
 describe('getType', () => {
