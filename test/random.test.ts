@@ -1,4 +1,4 @@
-const { randomInt, chance, choice, sample, shuffled, shuffle } = require('../generated/src/random')
+import { randomInt, chance, choice, sample, shuffled, shuffle } from '../src/random'
 
 
 describe('randomInt', () => {
@@ -44,7 +44,7 @@ describe('choice', () => {
     for (let i = 0; i < 1000; i++) {
       const picked = choice(array)
       expect(array).toContain(picked)
-      pickedAtLeastOnce[picked] = true
+      pickedAtLeastOnce[picked!] = true
     }
     expect(pickedAtLeastOnce.every(picked => picked)).toBeTruthy()
   })
@@ -69,8 +69,8 @@ describe('sample', () => {
     for (let i = 0; i < 1000; i++) {
       const sampleArray = sample(array, sampleSize)
       expect(sampleArray.length).toBe(sampleSize)
-      expect(sampleArray.every(element => array.includes(element))).toBeTruthy()
-      expect(sampleArray.every(element => sampleArray.indexOf(element) === sampleArray.lastIndexOf(element))).toBeTruthy() // because without replacement
+      expect(sampleArray.every((element: number) => array.includes(element))).toBeTruthy()
+      expect(sampleArray.every((element: number) => sampleArray.indexOf(element) === sampleArray.lastIndexOf(element))).toBeTruthy() // because without replacement
     }
   })
   it('should return a random sample with replacement of the array', () => {
@@ -80,15 +80,15 @@ describe('sample', () => {
     for (let i = 0; i < 1000; i++) {
       const sampleArray = sample(array, sampleSize, true)
       expect(sampleArray.length).toBe(sampleSize)
-      expect(sampleArray.every(element => array.includes(element))).toBeTruthy()
-      if (sampleArray.some(element => sampleArray.indexOf(element) !== sampleArray.lastIndexOf(element))) {
+      expect(sampleArray.every((element: number) => array.includes(element))).toBeTruthy()
+      if (sampleArray.some((element: number) => sampleArray.indexOf(element) !== sampleArray.lastIndexOf(element))) {
         hasSameValue = true
       }
     }
     expect(hasSameValue).toBeTruthy()
   })
   it('returns an empty array if the array is empty', () => {
-    const array = []
+    const array: number[] = []
     const sampleSize = 3
     const sampleArray = sample(array, sampleSize)
     console.log(sampleArray)
@@ -99,7 +99,7 @@ describe('sample', () => {
     const sampleSize = array.length + 1
     const sampleArray = sample(array, sampleSize)
     expect(sampleArray.length).toBe(array.length)
-    expect(sampleArray.every(element => array.includes(element))).toBeTruthy()
+    expect(sampleArray.every((element: number) => array.includes(element))).toBeTruthy()
   })
   it('should throw an error if the sample size is negative or not an integer', () => {
     const array = [0, 1, 2, 3, 4, 5]
@@ -114,11 +114,11 @@ describe('shuffled', () => {
     const array = [0, 1, 2, 3, 4, 5]
     const shuffledArray = shuffled(array)
     expect(shuffledArray.length).toBe(array.length)
-    expect(shuffledArray.every(element => array.includes(element))).toBeTruthy()
+    expect(shuffledArray.every((element: number) => array.includes(element))).toBeTruthy()
     expect(shuffledArray).not.toEqual(array)
   })
   it('should return the same array if the array is empty', () => {
-    const array = []
+    const array: number[] = []
     const shuffledArray = shuffled(array)
     expect(shuffledArray).toEqual(array)
     expect(shuffledArray).not.toBe(array)
@@ -129,6 +129,23 @@ describe('shuffled', () => {
     expect(shuffledArray).toEqual(array)
     expect(shuffledArray).not.toBe(array)
   })
+	it('should return a shuffled string', () => {
+		const string = 'abcdef'
+		const shuffledString = shuffled(string)
+		expect(shuffledString.length).toBe(string.length)
+    expect([...shuffledString].every((element: string) => string.includes(element))).toBeTruthy()
+    expect(shuffledString).not.toEqual(string)
+	})
+	it('should return the same string if the string is empty', () => {
+		const string = ''
+		const shuffledString = shuffled(string)
+		expect(shuffledString).toEqual(string)
+	})
+	it('should return the same string if the string has one character', () => {
+		const string = ''
+		const shuffledString = shuffled(string)
+    expect(shuffledString).toEqual(string)
+	})
 })
 
 
@@ -138,10 +155,10 @@ describe('shuffle', () => {
     const shuffledArray = shuffle(array)
     expect(shuffledArray).toBe(array)
     expect(shuffledArray).not.toEqual([0, 1, 2, 3, 4, 5])
-    expect(shuffledArray.every(element => array.includes(element))).toBeTruthy()
+    expect(shuffledArray.every((element: number) => array.includes(element))).toBeTruthy()
   })
   it('should return the same array if the array is empty', () => {
-    const array = []
+    const array: number[] = []
     const shuffledArray = shuffle(array)
     expect(shuffledArray).toBe(array)
     expect(shuffledArray).toEqual([])

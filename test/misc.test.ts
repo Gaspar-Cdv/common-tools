@@ -1,4 +1,4 @@
-const { getType, memoize } = require('../generated/src/misc')
+import { getType, memoize } from '../src/misc'
 
 
 describe('getType', () => {
@@ -33,9 +33,9 @@ describe('getType', () => {
     expect(getType(new Float64Array())).toBe('float64array')
     expect(getType(new BigInt64Array())).toBe('bigint64array')
     expect(getType(new BigUint64Array())).toBe('biguint64array')
-    expect(getType(new ArrayBuffer())).toBe('arraybuffer')
-    expect(getType(new SharedArrayBuffer())).toBe('sharedarraybuffer')
-    expect(getType(new DataView(new ArrayBuffer()))).toBe('dataview')
+    expect(getType(new ArrayBuffer(0))).toBe('arraybuffer')
+    expect(getType(new SharedArrayBuffer(0))).toBe('sharedarraybuffer')
+    expect(getType(new DataView(new ArrayBuffer(0)))).toBe('dataview')
     expect(getType(new URL('http://example.com'))).toBe('url')
   })
 })

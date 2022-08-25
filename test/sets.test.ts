@@ -1,4 +1,4 @@
-const { union, intersection, without, symDiff } = require('../generated/src/sets')
+import { union, intersection, without, symDiff } from '../src/sets'
 
 
 describe('union', () => {
@@ -19,10 +19,6 @@ describe('union', () => {
   })
   it('should return the union of two sets with same elements', () => {
     expect(union(new Set([1, 2, 3]), new Set([1, 2, 3]))).toEqual(new Set([1, 2, 3]))
-  })
-  it('should return a set if one of the arguments is a set', () => {
-    expect(union(new Set([1, 2, 3]), [2, 3, 4])).toEqual(new Set([1, 2, 3, 4]))
-    expect(union([1, 2, 3], new Set([4, 5, 6]))).toEqual(new Set([1, 2, 3, 4, 5, 6]))
   })
 })
 
@@ -45,10 +41,6 @@ describe('intersection', () => {
   })
   it('should return the intersection of two sets with same elements', () => {
     expect(intersection(new Set([1, 2, 3]), new Set([1, 2, 3]))).toEqual(new Set([1, 2, 3]))
-  })
-  it('should return a set if one of the arguments is a set', () => {
-    expect(intersection(new Set([1, 2, 3]), [2, 3, 4])).toEqual(new Set([2, 3]))
-    expect(intersection([1, 2, 3], new Set([4, 5, 6]))).toEqual(new Set())
   })
 })
 
@@ -90,9 +82,5 @@ describe('symDiff', () => {
   })
   it('should return the symmetric difference of two sets with same elements', () => {
     expect(symDiff(new Set([1, 2, 3]), new Set([1, 2, 3]))).toEqual(new Set())
-  })
-  it('should return a set if one of the arguments is a set', () => {
-    expect(symDiff(new Set([1, 2, 3]), [2, 3, 4])).toEqual(new Set([1, 4]))
-    expect(symDiff([1, 2, 3], new Set([4, 5, 6]))).toEqual(new Set([1, 2, 3, 4, 5, 6]))
   })
 })

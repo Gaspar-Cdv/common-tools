@@ -63,16 +63,16 @@ export function sample<T> (array: T[], n = 1, replacement = false): T[] {
 /**
  * Shuffle randomly an array or a string (non-mutating).
  */
-export function shuffled<T> (element: T[] | string): T[] | string {
+export function shuffled<T extends U[] | string, U> (element: T): T {
   let keys = range(element.length)
   const random = () => {
     const key = choice(keys, true)
     return key != null ? element[key] : undefined
   }
   if (typeof element === 'string') {
-    return [...element].map(random).join('')
+		return [...element].map(random).join('') as T
   }
-  return element.map(random) as T[]
+  return element.map(random) as T
 }
 
 
