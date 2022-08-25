@@ -44,7 +44,7 @@ describe('choice', () => {
     for (let i = 0; i < 1000; i++) {
       const picked = choice(array)
       expect(array).toContain(picked)
-      pickedAtLeastOnce[picked] = true
+      pickedAtLeastOnce[picked!] = true
     }
     expect(pickedAtLeastOnce.every(picked => picked)).toBeTruthy()
   })
@@ -129,6 +129,23 @@ describe('shuffled', () => {
     expect(shuffledArray).toEqual(array)
     expect(shuffledArray).not.toBe(array)
   })
+	it('should return a shuffled string', () => {
+		const string = 'abcdef'
+		const shuffledString = shuffled(string)
+		expect(shuffledString.length).toBe(string.length)
+    expect([...shuffledString].every((element: string) => string.includes(element))).toBeTruthy()
+    expect(shuffledString).not.toEqual(string)
+	})
+	it('should return the same string if the string is empty', () => {
+		const string = ''
+		const shuffledString = shuffled(string)
+		expect(shuffledString).toEqual(string)
+	})
+	it('should return the same string if the string has one character', () => {
+		const string = ''
+		const shuffledString = shuffled(string)
+    expect(shuffledString).toEqual(string)
+	})
 })
 
 
