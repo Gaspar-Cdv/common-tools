@@ -44,4 +44,3 @@ export function caesar (message: string, n = 13): string {
     return String.fromCharCode((char.charCodeAt(0) - delta + n) % 26 + delta)
   })
 }
-
