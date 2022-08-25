@@ -29,7 +29,7 @@ describe('nthRoot', () => {
 
 
 describe('sigma', () => {
-  const CALLBACK = (x) => x * x
+  const CALLBACK = (x: number) => x * x
   it('should return the sum of the squares of the numbers in the specified range', () => {
     expect(sigma(CALLBACK, 1, 10)).toBe(285)
     expect(sigma(CALLBACK, 1, 100)).toBe(328350)
