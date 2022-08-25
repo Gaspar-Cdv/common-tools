@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+		"build": "tsc",
     "test": "jest",
-    "dev": "tsc-watch --noClear -p ./tsconfig.json --onSuccess \"node ./generated/index.js\""
+    "dev": "tsc-watch --noClear -p ./tsconfig.json --onSuccess \"node ./dist/index.js\""
   },
   "repository": {
     "type": "git",
